@@ -163,7 +163,7 @@
         <canvas id="bg-canvas"></canvas>
 
         <div class="title-bar">
-            <span class="title-text">FREECORD ELITE</span>
+            <span class="title-text">FREECORD</span>
             <div class="window-controls">
                 <img src="assets/min.png" class="nav-icon" title="Stealth Mode" onmouseover="playHover()" onclick="runAction('window-hide')">
                 <img src="assets/close.png" class="nav-icon" title="Close" onmouseover="playHover()" onclick="runAction('window-close')">
@@ -175,7 +175,10 @@
             <h2>FREECORD</h2>
             
             <div class="info-box">
-                <strong>Stealth Protocol:</strong> Active. Logiciels de fond optimisés.
+                <strong>Stealth Protocol:</strong> Active. Optimized background software.<br><br>
+                <strong>Performance Analysis:</strong> Discord is an Electron-based application, meaning it essentially runs a full Chromium instance in the background. This architecture is notorious for high <strong>RAM consumption</strong> and <strong>CPU overhead</strong>, often competing with your games for vital system resources. <br><br>
+                <strong>System Impact:</strong> Standard Discord installations execute multiple sub-processes for voice encoding, video rendering, and telemetry data collection. These "bloat" tasks can cause micro-stutters and increased input lag during intensive gaming sessions. <br><br>
+                <strong>Freecord Solution:</strong> Our kernel-level simulation overrides these default behaviors. By forcing <strong>High Priority</strong> on essential execution threads and purging the <strong>GPU cache</strong>, we ensure that Discord's footprint is minimized, redirecting raw power back to your primary hardware tasks.
             </div>
 
             <div class="btn-group">
@@ -298,7 +301,7 @@
                     ctx.lineWidth = 0.6;
                     ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
                 }
-            }
+            }z
             requestAnimationFrame(animate);
         }
         init(); animate();

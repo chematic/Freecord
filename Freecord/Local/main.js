@@ -1,6 +1,11 @@
+// v0.2.0 - 2026-04-01
+
 const { app, BrowserWindow, ipcMain, Tray, Menu } = require('electron');
 const { exec } = require('child_process');
 const path = require('path');
+
+// Please do not touch anything on the source-code, thanks !
+// Made by @onuza on Discord!
 
 let win;
 let tray = null;
@@ -11,10 +16,11 @@ function sendLog(msg, type = 'info') {
   }
 }
 
+// Main application window settings
 function createWindow() {
   win = new BrowserWindow({
     width: 360,
-    height: 650,
+    height: 850,
     frame: false,
     transparent: true,
     resizable: false,
@@ -35,11 +41,12 @@ function createWindow() {
     sendLog('UI Ready. Waiting for commands.', 'success');
   });
 
+  // System tray setup
   tray = new Tray(path.join(__dirname, 'assets/tray.png'));
   const contextMenu = Menu.buildFromTemplate([
-    { label: 'Open FREECORD', click: () => { win.show(); } },
+    { label: 'Open Freecord', click: () => { win.show(); } },
     { type: 'separator' },
-    { label: 'Quit', click: () => { app.quit(); } }
+    { label: 'Exit', click: () => { app.quit(); } }
   ]);
   
   tray.setToolTip('FREECORD Optimizer');
@@ -58,6 +65,7 @@ ipcMain.on('window-close', () => {
   app.quit();
 });
 
+// Powershell cmd to set Discord CPU priority to High
 ipcMain.on('action-boost', () => {
   sendLog('Requesting CPU Boost...', 'info');
   const ps = 'Get-Process Discord -ErrorAction SilentlyContinue | ForEach-Object { $_.PriorityClass = \'High\' }';
@@ -67,6 +75,7 @@ ipcMain.on('action-boost', () => {
   });
 });
 
+// Powershell cmd to set Discord GPU priority to Realtime
 ipcMain.on('action-gpu', () => {
   sendLog('Requesting GPU Priority...', 'info');
   const ps = 'Get-Process Discord -ErrorAction SilentlyContinue | ForEach-Object { $_.BasePriority = 13 }';
@@ -76,6 +85,7 @@ ipcMain.on('action-gpu', () => {
   });
 });
 
+// Powershell cmd to flush Discord memory (working set)
 ipcMain.on('action-flush', () => {
   sendLog('Flushing Working Set...', 'info');
   const ps = 'Get-Process Discord -ErrorAction SilentlyContinue | ForEach-Object { $_.EmptyWorkingSet() }';
@@ -85,6 +95,7 @@ ipcMain.on('action-flush', () => {
   });
 });
 
+// Powershell cmd to clear Discord cache and restart the app
 ipcMain.on('action-clean', () => {
   sendLog('Cleaning Cache...', 'info');
   const ps = 'Stop-Process -Name Discord -Force -ErrorAction SilentlyContinue; Remove-Item -Path $env:APPDATA\\discord\\Cache\\* -Recurse -Force -ErrorAction SilentlyContinue';
