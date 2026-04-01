@@ -1,0 +1,2 @@
+# Freecord
+Simple discord optimizer ^^
