@@ -13,7 +13,7 @@ $Ecl = @{
 function Show-Header {
     Clear-Host
     Write-Host "$($Ecl.Magenta)$($Ecl.Bold)"
-    Write-Host "DC OPTIMIZER - 0.2.0 - 2026-06-01"
+    Write-Host "v0.2.0 - 2026-06-01"
     Write-Host "$($Ecl.Reset)"
 }
 
