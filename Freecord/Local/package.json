@@ -1,0 +1,12 @@
+{
+  "name": "controller-interface",
+  "version": "0.0.1",
+  "main": "main.js",
+  "description": "process controller",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^latest"
+  }
+}
